@@ -12,7 +12,9 @@
 const pariBtn = document.querySelector("#pari");
 const dispariBtn = document.querySelector("#dispari");
 const userNumberInput = document.querySelector("#user-number");
+const computerNumberDisplay = document.querySelector("#computer-number");
 const playBtn = document.querySelector("#play-btn");
+const resultDisplay = document.querySelector(".result-msg");
 
 let pari = false;
 let dispari = false;
@@ -36,14 +38,19 @@ function addNumbers(n1, n2) {
 }
 
 playBtn.addEventListener("click", function () {
+  playBtn.classList.add("disabled");
   computerNum = getComputerNum(1, 5);
   userNum = Number(userNumberInput.value);
-  console.log(computerNum, userNum);
+  computerNumberDisplay.innerHTML = computerNum;
   if (addNumbers(computerNum, userNum) % 2 === 0 && pari === true) {
-    console.log("you won");
+    resultDisplay.classList.remove("d-none");
+    resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e pari</p>`;
   } else if (addNumbers(computerNum, userNum) % 2 !== 0 && dispari === true) {
-    console.log("You won");
+    resultDisplay.classList.remove("d-none");
+    resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e dispari</p>`;
   } else {
-    console.log(ga);
+    resultDisplay.classList.remove("d-none");
+
+    resultDisplay.innerHTML += `<p>Hai Perso non hai idovinato se la somma e pari o dispari</p>`;
   }
 });
