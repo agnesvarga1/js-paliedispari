@@ -3,24 +3,40 @@
 // Creare una funzione per capire se la parola inserita è palindroma
 
 const userInputHtml = document.querySelector("#word-input");
-const palidromeBtn = document.querySelector("#isPalidrome-btn");
+const palindromeBtn = document.querySelector("#isPalidrome-btn");
 
-function isPalidrome(parola) {
+function isPalindrome(parola) {
   let arrParola = Array.from(parola);
   let arrReverse = [];
-  for (let i = 0; i < arrParola.length; i++) {
-    console.log(i, arrParola[i]);
-  }
+  let arrControl = [];
+  let state;
 
   for (let i = arrParola.length - 1; i >= 0; i--) {
     arrReverse.push(arrParola[i]);
   }
-  console.log(arrParola);
+
   console.log(arrReverse);
+  for (let i = 0; i < arrParola.length; i++) {
+    if (arrParola[i] === arrReverse[i]) {
+      state = true;
+      arrControl.push(state);
+    } else {
+      state = false;
+      arrControl.push(state);
+    }
+  }
+  if (arrControl.includes(false)) {
+    resultDisplay.classList.remove("d-none");
+    resultDisplay.innerHTML += `<p>La parola NON e palindroma</p>`;
+  } else {
+    resultDisplay.classList.remove("d-none");
+    resultDisplay.innerHTML += `<p>Questa parola E palindroma</p>`;
+  }
 }
-isPalidrome("any");
-palidromeBtn.addEventListener("click", function () {
+
+palindromeBtn.addEventListener("click", function () {
   let parolaIn = userInputHtml.value;
+  isPalindrome(parolaIn);
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Pari e Dispari
