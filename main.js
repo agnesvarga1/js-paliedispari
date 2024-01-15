@@ -2,6 +2,27 @@
 // Chiedere all’utente di inserire una parola
 // Creare una funzione per capire se la parola inserita è palindroma
 
+const userInputHtml = document.querySelector("#word-input");
+const palidromeBtn = document.querySelector("#isPalidrome-btn");
+
+function isPalidrome(parola) {
+  let arrParola = Array.from(parola);
+  let arrReverse = [];
+  for (let i = 0; i < arrParola.length; i++) {
+    console.log(i, arrParola[i]);
+  }
+
+  for (let i = arrParola.length - 1; i >= 0; i--) {
+    arrReverse.push(arrParola[i]);
+  }
+  console.log(arrParola);
+  console.log(arrReverse);
+}
+isPalidrome("any");
+palidromeBtn.addEventListener("click", function () {
+  let parolaIn = userInputHtml.value;
+});
+///////////////////////////////////////////////////////////////////////////////////////////////
 // Pari e Dispari
 // L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
 // Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
