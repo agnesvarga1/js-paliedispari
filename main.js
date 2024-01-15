@@ -27,10 +27,10 @@ function isPalindrome(parola) {
   }
   if (arrControl.includes(false)) {
     resultDisplay.classList.remove("d-none");
-    resultDisplay.innerHTML += `<p>La parola NON e palindroma</p>`;
+    resultDisplay.innerHTML += `<p> La parola "${parola}" NON e palidroma</p>`;
   } else {
     resultDisplay.classList.remove("d-none");
-    resultDisplay.innerHTML += `<p>Questa parola E palindroma</p>`;
+    resultDisplay.innerHTML += `<p>La parola "${parola}" E palidroma</p>`;
   }
 }
 
@@ -77,17 +77,24 @@ function addNumbers(n1, n2) {
 playBtn.addEventListener("click", function () {
   playBtn.classList.add("disabled");
   computerNum = getComputerNum(1, 5);
-  userNum = Number(userNumberInput.value);
-  computerNumberDisplay.innerHTML = computerNum;
-  if (addNumbers(computerNum, userNum) % 2 === 0 && pari === true) {
-    resultDisplay.classList.remove("d-none");
-    resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e pari</p>`;
-  } else if (addNumbers(computerNum, userNum) % 2 !== 0 && dispari === true) {
-    resultDisplay.classList.remove("d-none");
-    resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e dispari</p>`;
-  } else {
-    resultDisplay.classList.remove("d-none");
 
-    resultDisplay.innerHTML += `<p>Hai Perso non hai idovinato se la somma e pari o dispari</p>`;
+  userNum = Number(userNumberInput.value);
+  if (userNum > 5) {
+    alert("questo numero piu alto di 5 riprova!!");
+    location.reload();
+  } else {
+    computerNumberDisplay.innerHTML = computerNum;
+
+    if (addNumbers(computerNum, userNum) % 2 === 0 && pari === true) {
+      resultDisplay.classList.remove("d-none");
+      resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e pari</p>`;
+    } else if (addNumbers(computerNum, userNum) % 2 !== 0 && dispari === true) {
+      resultDisplay.classList.remove("d-none");
+      resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e dispari</p>`;
+    } else {
+      resultDisplay.classList.remove("d-none");
+
+      resultDisplay.innerHTML += `<p>Hai Perso non hai idovinato se la somma e pari o dispari</p>`;
+    }
   }
 });
