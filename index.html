@@ -13,6 +13,21 @@
   </head>
   <body class="bg-dark text-center text-light">
     <h2>Gioco pari-dispari</h2>
+    <!-- <h3>Scegli pari o dispari?</h3> -->
+    <div class="game-board d-flex p-3">
+      <div class="palyer d-flex flex-column gap-2">
+        <h3>Player</h3>
+        <button id="pari" class="btn btn-primary">PARI</button>
+        <button id="dispari" class="btn btn-secondary">DISPARI</button>
+        <label for="user-number">Inserisci un numero da 1 a 5</label>
+        <input id="user-number" type="number" placeholder="1-5" />
+        <button id="play-btn" class="btn btn-success">PLAY</button>
+      </div>
+      <div class="computer-side">
+        <h3>Computer</h3>
+        <span id="computer-number"></span>
+      </div>
+    </div>
 
     <hr />
     <!-- <h2>Parola palidroma?</h2> -->
