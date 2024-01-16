@@ -7,6 +7,8 @@ const palindromeBtn = document.querySelector("#isPalidrome-btn");
 
 function isPalindrome(parola) {
   //convert string to an arr
+  parola = parola.toLowerCase();
+
   let arrParola = Array.from(parola);
   //helper arrs and var
   let arrReverse = [];
@@ -64,19 +66,18 @@ const computerNumberDisplay = document.querySelector("#computer-number");
 const playBtn = document.querySelector("#play-btn");
 const resultDisplay = document.querySelector(".result-msg");
 //vars
-let pari = false;
-let dispari = false;
+let state;
 let userNum, computerNum;
 
 //btns ottenere scelta utenet pari o dispari
 pariBtn.addEventListener("click", function () {
-  pari = true;
   dispariBtn.classList.add("disabled");
+  state = "pari";
 });
 
 dispariBtn.addEventListener("click", function () {
-  dispari = true;
   pariBtn.classList.add("disabled");
+  state = "dispari";
 });
 
 //fn genera numero randomico
@@ -89,6 +90,15 @@ function getComputerNum(min, max) {
 function addNumbers(n1, n2) {
   let sum = n1 + n2;
   return sum;
+}
+
+//fn pari o dispari
+function pariODispari(x) {
+  if (x % 2 === 0) {
+    return "pari";
+  } else {
+    return "dispari";
+  }
 }
 //on click
 playBtn.addEventListener("click", function () {
@@ -106,19 +116,14 @@ playBtn.addEventListener("click", function () {
     computerNumberDisplay.innerHTML = computerNum;
     //se la somma e pari e la scelta del user pari
     //user won display in html
-    if (addNumbers(computerNum, userNum) % 2 === 0 && pari === true) {
+
+    if (pariODispari(addNumbers(computerNum, userNum)) === state) {
       resultDisplay.classList.remove("d-none");
-      resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e pari</p>`;
-      //se la somma e dispari e la scelta del user dispari
-      //user won display in html
-    } else if (addNumbers(computerNum, userNum) % 2 !== 0 && dispari === true) {
-      resultDisplay.classList.remove("d-none");
-      resultDisplay.innerHTML += `<p>Hai vinto perche la somma dei due numeri e dispari</p>`;
+      resultDisplay.innerHTML += `<p>Hai vinto perche indovinato se il numero e pari o dispari</p>`;
       //se utente non indovina se la somma pari o dispari
       //user lost + display in html
     } else {
       resultDisplay.classList.remove("d-none");
-
       resultDisplay.innerHTML += `<p>Hai Perso non hai idovinato se la somma e pari o dispari</p>`;
     }
   }
